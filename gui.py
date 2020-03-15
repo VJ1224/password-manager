@@ -1,5 +1,6 @@
 import sqlite3
 import validators
+import csv
 from tkinter import *
 from tkinter import messagebox
 
@@ -34,7 +35,7 @@ def insertRecord():
         try:
             cursor.execute("""INSERT INTO savedpasswords (website,email,password) VALUES (?,?,?)""",(w,e,p))
             conn.commit()
-            messagebox.showinfo("Inserted record","The record has been inserted")
+            messagebox.showinfo("Inserted record","The record has been inserted successfully")
         except:
             pass
 
@@ -49,7 +50,7 @@ def deleteRecord():
         try:
             cursor.execute("""DELETE FROM savedpasswords WHERE website=?""", (w,))
             conn.commit()
-            messagebox.showinfo("Deleted record","The record has been deleted")
+            messagebox.showinfo("Deleted record","The record has been deleted successfully")
         except:
             pass
 
@@ -71,7 +72,7 @@ def updateRecord():
                 if(validEmail):
                     cursor.execute("""UPDATE savedpasswords SET email=? WHERE website=?""",(e,w))
                     conn.commit()
-            messagebox.showinfo("Updated record","The record has been updated")
+            messagebox.showinfo("Updated record","The record has been updated successfully")
             clearRecords()
             displayRecord(w)
         except:
@@ -144,6 +145,16 @@ def displayRecord(w=""):
         except:
             pass
 
+def downloadCSV():
+    cursor.execute("""SELECT * FROM savedpasswords""")
+    websites=cursor.fetchall()
+    conn.commit()
+    writer=csv.writer(open("passwords.csv","w"))
+    writer.writerow(("Websites","Emails","Passwords"))
+    for row in websites:
+        writer.writerow(row)
+    messagebox.showinfo("Download as CSV","Download successful")
+
 def validateEmail(e):
     if(validators.email(e)):
         return True
@@ -184,7 +195,7 @@ emailEntry.grid(row=1,column=1,padx=10,pady=10)
 
 passwordLabel=Label(homeFrame,text="Password: ")
 passwordLabel.grid(row=2,column=0,padx=10,pady=10)
-passwordEntry=Entry(homeFrame,width=30)
+passwordEntry=Entry(homeFrame,width=30,show="*")
 passwordEntry.grid(row=2,column=1,padx=10,pady=10)
 
 addBtn=Button(homeFrame,text="Add Record",command=insertRecord,width=30)
@@ -198,5 +209,7 @@ disRecBtn.grid(row=6,column=0,columnspan=2,padx=10,pady=10)
 disTblBtn=Button(homeFrame,text="Display Table",command=displayTable,width=30)
 disTblBtn.grid(row=7,column=0,columnspan=2,padx=10,pady=10)
 extraLabel=Label(homeFrame)
+downCSVBtn=Button(homeFrame,text="Download as CSV",command=downloadCSV,width=30)
+downCSVBtn.grid(row=8,column=0,columnspan=2,padx=10,pady=10)
 
 root.mainloop()
