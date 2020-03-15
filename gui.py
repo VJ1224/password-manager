@@ -10,9 +10,7 @@ def createTable():
                email VARCHAR,
                password VARCHAR)""")
         conn.commit()
-        print("Table created successfully")
     except:
-        print("Table exists")
         pass
 
 conn=sqlite3.connect('passwords.db')
@@ -37,9 +35,7 @@ def insertRecord():
             cursor.execute("""INSERT INTO savedpasswords (website,email,password) VALUES (?,?,?)""",(w,e,p))
             conn.commit()
             messagebox.showinfo("Inserted record","The record has been inserted")
-            print("Values added")
         except:
-            print("Values not added")
             pass
 
 def deleteRecord():
@@ -54,9 +50,7 @@ def deleteRecord():
             cursor.execute("""DELETE FROM savedpasswords WHERE website=?""", (w,))
             conn.commit()
             messagebox.showinfo("Deleted record","The record has been deleted")
-            print("Value deleted")
         except:
-            print("Value not deleted")
             pass
 
 def updateRecord():
@@ -80,9 +74,7 @@ def updateRecord():
             messagebox.showinfo("Updated record","The record has been updated")
             clearRecords()
             displayRecord(w)
-            print("Value updated")
         except:
-            print("Value not updated")
             pass
 
 def checkWebsite(w):
@@ -91,10 +83,8 @@ def checkWebsite(w):
         website=cursor.fetchone()
         conn.commit()
         if(len(website)>0):
-            print("Website exists")
             return True
     except:
-        print("Website does not exist")
         return False
         pass
 
@@ -131,10 +121,7 @@ def displayTable():
             body3=Label(tableWindow,text=str,justify=LEFT,anchor=W)
             body3.grid(sticky=W,row=count,column=2)
             count+=1
-
-        print("Table printed")
     except:
-        print("Could not print table")
         pass
 
 def displayRecord(w=""):
@@ -152,13 +139,9 @@ def displayRecord(w=""):
             passwords=cursor.fetchone()
             conn.commit()
             str="Website: "+w+"\nEmail: "+emails[0]+"\nPassword: "+passwords[0]
-            print("For "+w+": ")
-            print("\tEmail: "+emails[0])
-            print("\tPassword: "+passwords[0])
             extraLabel.config(text=str)
             extraLabel.grid(row=8,column=0,columnspan=2)
         except:
-            print("Could not get website details")
             pass
 
 def validateEmail(e):
