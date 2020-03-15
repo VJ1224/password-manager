@@ -3,9 +3,6 @@ import validators
 from tkinter import *
 from tkinter import messagebox
 
-conn=sqlite3.connect('passwords.db')
-cursor=conn.cursor()
-
 def createTable():
     try:
         cursor.execute("""CREATE TABLE savedpasswords
@@ -17,6 +14,10 @@ def createTable():
     except:
         print("Table exists")
         pass
+
+conn=sqlite3.connect('passwords.db')
+cursor=conn.cursor()
+createTable()
 
 def insertRecord():
     w=websiteEntry.get()
