@@ -12,17 +12,17 @@ There are 2 versions:
 
 ## Run
 
-Create a file called hash.txt that stores hashed master password:
+1. Create a file called hash.txt that stores hashed master password:
 
-* Run hash.py file
+  * Run hash.py file
 
-* Use function hashPassword(PASSWORD) to generate sha256 hash
+  * Use function hashPassword(_password_) to generate sha256 hash
 
-* Use function storeHash(HASH) to store in hash.text
+  * Use function storeHash(_hash_) to store hash in hash.txt
 
-* Verify using verifyPassword(PASSWORD)
+  * Verify using verifyPassword(_password_)
 
-Run either gui.py
+2. Run gui.py
 
 
 ## Note
