@@ -1,8 +1,10 @@
 import sqlite3
 import validators
 import csv
+import hash
 from tkinter import *
 from tkinter import messagebox
+from tkinter import simpledialog
 from tkinter import font
 
 #Creates a databse and a table if does not exist
@@ -226,24 +228,52 @@ def clearRecords():
     passwordEntry.delete(0,END)
     extraLabel.config(text="")
 
+#Verifies master passwords
+def checkMasterPassword(event=None):
+    password=masterEntry.get()
+    if(encrypt.verifyPassword(password)):
+        #Destroys master password entry window
+        masterWindow.destroy()
+        #Shows main window
+        root.deiconify()
+    else:
+        messagebox.showerror("Incorrect Password","Incorrect password")
+
 #Creates root window
 root=Tk()
 root.resizable(0,0)
 root.iconbitmap("icon.ico")
 root.wm_title("Password Manager")
+root.withdraw()
 
 #Changes the default font
 default_font = font.nametofont("TkDefaultFont")
 default_font.configure(size=9,family="Arial")
 
+#Creates window to enter master password
+masterWindow=Toplevel()
+masterWindow.resizable(0,0)
+masterWindow.wm_title("Enter password")
+masterWindow.iconbitmap("icon.ico")
+masterWindow.focus_set()
+
+#Adds widgets for master password entry
+masterLabel=Label(masterWindow,text="Enter password:",)
+masterLabel.grid(row=0,column=0,padx=10,pady=10)
+masterEntry=Entry(masterWindow,width=30,show="*")
+masterEntry.grid(row=1,column=0,padx=10,pady=10)
+masterBtn=Button(masterWindow,text="Submit",command=checkMasterPassword,width=30)
+masterWindow.bind('<Return>', checkMasterPassword)
+masterBtn.grid(row=2,column=0,columnspan=2,padx=10,pady=10)
+masterWindow.focus_set()
+
 #Creates main window frame
 homeFrame=Frame(root)
 homeFrame.grid()
-homeFrame.focus_set()
 
 #Adds widgets for website entry
 websiteLabel=Label(homeFrame,text="Website: ")
-websiteLabel.grid(row=0,column=0,padx=10,pady=10)
+websiteLabel.grid(row=0,column=0,)
 websiteEntry=Entry(homeFrame,width=30)
 websiteEntry.grid(row=0,column=1,padx=10,pady=10)
 
