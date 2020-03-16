@@ -6,3 +6,6 @@ There are 2 versions:
 * cli is the command line version (limited functionality)
 
 * gui is the graphical version created using TkInter (up to date)
+
+
+Note: Meant to be a personal project to learn Python, do not actually use it as it has security issues
