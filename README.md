@@ -5,19 +5,27 @@ Password manager with CRUD operations created using Python
 
 There are 2 versions:
 
-* cli is the command line version (limited functionality)
+* cli.py is the command line version (deprecated)
 
-* gui is the graphical version created using TkInter (up to date)
+* gui.py is the graphical version created using TkInter (up to date)
 
 
 ## Run
 
-Create a file called hash.txt that stores hashed master password (can use hash.py file)
+Create a file called hash.txt that stores hashed master password:
 
-Run either the cli.py (old) or the gui.py (suggested)
+* Run hash.py file
+
+* Use function hashPassword(PASSWORD) to generate sha256 hash
+
+* Use function storeHash(HASH) to store in hash.text
+
+* Verify using verifyPassword(PASSWORD)
+
+Run either gui.py
 
 
 ## Note
 
 
-Note: Meant to be a personal project to learn Python, do not actually use it as it has security issues
+This is meant to be a personal project to learn Python, do not actually use it as it has security issues
