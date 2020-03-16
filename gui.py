@@ -185,7 +185,7 @@ def displayRecord(w=""):
             conn.commit()
             str="Website: "+w+"\nEmail: "+emails[0]+"\nPassword: "+passwords[0]
             extraLabel.config(text=str)
-            extraLabel.grid(row=9,column=0,columnspan=2)
+            extraLabel.grid(row=10,column=0,columnspan=2)
         except:
             pass
 
@@ -231,6 +231,7 @@ def clearRecords():
 #Verifies master passwords
 def checkMasterPassword(event=None):
     password=masterEntry.get()
+    masterEntry.delete(0,END)
     if(hash.verifyPassword(password)):
         #Destroys master password entry window
         masterWindow.destroy()
@@ -239,12 +240,24 @@ def checkMasterPassword(event=None):
     else:
         messagebox.showerror("Incorrect Password","Incorrect password")
 
+#Shows password if button checked
+def showPassword():
+    check=checked.get()
+    if (check):
+        masterEntry.config(show="")
+        passwordEntry.config(show="")
+    else:
+        masterEntry.config(show="\u2022")
+        passwordEntry.config(show="\u2022")
+
+
 #Creates root window
 root=Tk()
 root.resizable(0,0)
 root.iconbitmap("icon.ico")
 root.wm_title("Password Manager")
 root.withdraw()
+checked=IntVar()
 
 #Changes the default font
 default_font = font.nametofont("TkDefaultFont")
@@ -260,11 +273,14 @@ masterWindow.focus_set()
 #Adds widgets for master password entry
 masterLabel=Label(masterWindow,text="Enter password:",)
 masterLabel.grid(row=0,column=0,padx=10,pady=10)
-masterEntry=Entry(masterWindow,width=30,show="*")
+masterEntry=Entry(masterWindow,width=30,show="\u2022")
 masterEntry.grid(row=1,column=0,padx=10,pady=10)
-masterBtn=Button(masterWindow,text="Submit",command=checkMasterPassword,width=30)
+masterCBox=Checkbutton(masterWindow,text="Show password",variable=checked,command=showPassword,onvalue=1,offvalue=0)
+masterCBox.grid(row=2,column=0)
+masterBtn=Button(masterWindow,text="Submit",command=checkMasterPassword,width=25)
 masterWindow.bind('<Return>', checkMasterPassword)
-masterBtn.grid(row=2,column=0,columnspan=2,padx=10,pady=10)
+masterBtn.grid(row=3,column=0,columnspan=2,padx=10,pady=10)
+
 masterWindow.focus_set()
 
 #Creates main window frame
@@ -286,23 +302,25 @@ emailEntry.grid(row=1,column=1,padx=10,pady=10)
 #Adds widgets for password entry
 passwordLabel=Label(homeFrame,text="Password: ")
 passwordLabel.grid(row=2,column=0,padx=10,pady=10)
-passwordEntry=Entry(homeFrame,width=30,show="*")
+passwordEntry=Entry(homeFrame,width=30,show="\u2022")
 passwordEntry.grid(row=2,column=1,padx=10,pady=10)
+passwordCBox=Checkbutton(homeFrame,text="Show password",variable=checked,command=showPassword,onvalue=1,offvalue=0)
+passwordCBox.grid(row=3,column=0,columnspan=2)
 
 
 #Adds buttons for all functions
 addBtn=Button(homeFrame,text="Add Record",command=insertRecord,width=30)
-addBtn.grid(row=3,column=0,columnspan=2,padx=10,pady=10)
+addBtn.grid(row=4,column=0,columnspan=2,padx=10,pady=10)
 delBtn=Button(homeFrame,text="Delete Record",command=deleteRecord,width=30)
-delBtn.grid(row=4,column=0,columnspan=2,padx=10,pady=10)
+delBtn.grid(row=5,column=0,columnspan=2,padx=10,pady=10)
 updBtn=Button(homeFrame,text="Update Record",command=updateRecord,width=30)
-updBtn.grid(row=5,column=0,columnspan=2,padx=10,pady=10)
+updBtn.grid(row=6,column=0,columnspan=2,padx=10,pady=10)
 disRecBtn=Button(homeFrame,text="Display Record",command=displayRecord,width=30)
-disRecBtn.grid(row=6,column=0,columnspan=2,padx=10,pady=10)
+disRecBtn.grid(row=7,column=0,columnspan=2,padx=10,pady=10)
 disTblBtn=Button(homeFrame,text="Display Table",command=displayTable,width=30)
-disTblBtn.grid(row=7,column=0,columnspan=2,padx=10,pady=10)
+disTblBtn.grid(row=8,column=0,columnspan=2,padx=10,pady=10)
 downCSVBtn=Button(homeFrame,text="Download as CSV",command=downloadCSV,width=30)
-downCSVBtn.grid(row=8,column=0,columnspan=2,padx=10,pady=10)
+downCSVBtn.grid(row=9,column=0,columnspan=2,padx=10,pady=10)
 #Extra label that displays record details
 extraLabel=Label(homeFrame)
 
