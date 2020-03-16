@@ -1,3 +1,4 @@
+#Not supported, use gui.py
 import sqlite3
 import validators
 
