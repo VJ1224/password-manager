@@ -1,4 +1,4 @@
-*.db
-*.csv
-*.txt
+*passwords.db
+*passwords.csv
+*hash.txt
 *__pycache__

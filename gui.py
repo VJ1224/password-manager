@@ -231,7 +231,7 @@ def clearRecords():
 #Verifies master passwords
 def checkMasterPassword(event=None):
     password=masterEntry.get()
-    if(encrypt.verifyPassword(password)):
+    if(hash.verifyPassword(password)):
         #Destroys master password entry window
         masterWindow.destroy()
         #Shows main window
