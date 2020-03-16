@@ -186,12 +186,11 @@ def clearRecords():
 root=Tk()
 root.resizable(0,0)
 default_font = font.nametofont("TkDefaultFont")
-default_font.configure(size=8,family="Arial")
+default_font.configure(size=9,family="Arial")
 
 
 root.iconbitmap("icon.ico")
 root.wm_title("Password Manager")
-myFont=font.Font(family="Arial",size=10)
 homeFrame=Frame(root)
 homeFrame.grid()
 homeFrame.focus_set()
