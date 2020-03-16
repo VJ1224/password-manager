@@ -3,6 +3,7 @@ import validators
 import csv
 from tkinter import *
 from tkinter import messagebox
+from tkinter import font
 
 def createTable():
     try:
@@ -27,15 +28,18 @@ def insertRecord():
     validWebsite=validateWebsite(w)
     checkWeb=checkWebsite(w)
 
+    if (not p):
+        messagebox.showerror("Check password","Invalid password")
+
     if(checkWeb):
-        messagebox.showerror("Website exists","Website already exists in table")
+        messagebox.showerror("Check website","Website already exists")
 
     if(not checkWeb and validEmail and validWebsite and w and p and e):
         clearRecords()
         try:
             cursor.execute("""INSERT INTO savedpasswords (website,email,password) VALUES (?,?,?)""",(w,e,p))
             conn.commit()
-            messagebox.showinfo("Inserted record","The record has been inserted successfully")
+            messagebox.showinfo("Inserted record","Record inserted successfully")
         except:
             pass
 
@@ -43,14 +47,14 @@ def deleteRecord():
     w=websiteEntry.get()
     checkWeb=checkWebsite(w)
     if (not checkWeb):
-        messagebox.showerror("Website does not exist","Website does not exist in table")
+        messagebox.showerror("Check website","Website does not exist")
 
     if(checkWeb and w):
         clearRecords()
         try:
             cursor.execute("""DELETE FROM savedpasswords WHERE website=?""", (w,))
             conn.commit()
-            messagebox.showinfo("Deleted record","The record has been deleted successfully")
+            messagebox.showinfo("Deleted record","Record deleted successfully")
         except:
             pass
 
@@ -60,7 +64,10 @@ def updateRecord():
     p=passwordEntry.get()
     checkWeb=checkWebsite(w)
     if (not checkWeb):
-        messagebox.showerror("Website does not exist","Website does not exist in table")
+        messagebox.showerror("Check website","Website does not exist")
+
+    if (not p):
+        messagebox.showerror("Check password","Invalid password")
 
     if(checkWeb and w and (p or e)):
         try:
@@ -72,7 +79,7 @@ def updateRecord():
                 if(validEmail):
                     cursor.execute("""UPDATE savedpasswords SET email=? WHERE website=?""",(e,w))
                     conn.commit()
-            messagebox.showinfo("Updated record","The record has been updated successfully")
+            messagebox.showinfo("Updated record","Record updated successfully")
             clearRecords()
             displayRecord(w)
         except:
@@ -95,6 +102,7 @@ def displayTable():
         websites=cursor.fetchall()
         conn.commit()
         tableWindow=Toplevel()
+        tableWindow.resizable(0,0)
         tableWindow.wm_title("Display Table")
         tableWindow.iconbitmap("icon.ico")
         tableWindow.focus_set()
@@ -130,7 +138,7 @@ def displayRecord(w=""):
         w=websiteEntry.get()
     checkWeb=checkWebsite(w)
     if (not checkWeb):
-        messagebox.showerror("Website does not exist","Website does not exist in table")
+        messagebox.showerror("Check website","Website does not exist")
     if(checkWeb):
         try:
             cursor.execute("""SELECT email FROM savedpasswords WHERE website=?""",(w,))
@@ -159,14 +167,14 @@ def validateEmail(e):
     if(validators.email(e)):
         return True
     else:
-        messagebox.showerror("Invalid email","Email address entered is invalid")
+        messagebox.showerror("Check email","Invalid email address")
         return False
 
 def validateWebsite(w):
     if(validators.url(w)):
         return True
     else:
-        messagebox.showerror("Invalid URL","URL entered is invalid")
+        messagebox.showerror("Check URL","Invalid website URL")
         return False
 
 def clearRecords():
@@ -176,12 +184,17 @@ def clearRecords():
     extraLabel.config(text="")
 
 root=Tk()
+root.resizable(0,0)
+default_font = font.nametofont("TkDefaultFont")
+default_font.configure(size=8,family="Arial")
+
 
 root.iconbitmap("icon.ico")
 root.wm_title("Password Manager")
-
+myFont=font.Font(family="Arial",size=10)
 homeFrame=Frame(root)
 homeFrame.grid()
+homeFrame.focus_set()
 
 websiteLabel=Label(homeFrame,text="Website: ")
 websiteLabel.grid(row=0,column=0,padx=10,pady=10)
