@@ -1,7 +1,7 @@
 # Python Password manager
 Password manager with CRUD operations created using Python
 
-##Versions
+# # Versions
 
 There are 2 versions:
 
@@ -10,14 +10,14 @@ There are 2 versions:
 * gui is the graphical version created using TkInter (up to date)
 
 
-##Run
+# # Run
 
 Create a file called hash.txt that stores hashed master password (can use hash.py file)
 
 Run either the cli.py (old) or the gui.py (suggested)
 
 
-##Note
+# # Note
 
 
 Note: Meant to be a personal project to learn Python, do not actually use it as it has security issues
