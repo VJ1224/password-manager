@@ -11,9 +11,7 @@ def verifyPassword(password):
     return check
 
 def storeHash(hash):
-    with open("hash.txt", "w") as file:
-        file.write(hash)
+    os.environ['PM_PASSWORD']=hash
 
 def readHash():
-    with open("hash.txt","r") as file:
-        return file.read()
+    return os.environ['PM_PASSWORD']

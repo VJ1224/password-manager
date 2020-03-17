@@ -12,13 +12,13 @@ There are 2 versions:
 
 ## Run
 
-1. Create a file called hash.txt that stores hashed master password:
+1. Create a user environment variable _PM_PASSWORD_ that stores hashed master password:
 
   * Run hash.py file
 
   * Use function hashPassword(_password_) to generate sha256 hash
 
-  * Use function storeHash(_hash_) to store hash in hash.txt
+  * Use function storeHash(_hash_) to store hash in _PM_PASSWORD_
 
   * Verify using verifyPassword(_password_)
 
