@@ -34,6 +34,11 @@ Main window:
 
 ![image](https://user-images.githubusercontent.com/31571314/77235078-dcd0c980-6bd8-11ea-8dfb-4b35e3a43570.png)
 
-## Note
+Display table:
 
-This is meant to be a personal project to learn Python, do not actually use it as it has security issues
+![image](https://user-images.githubusercontent.com/31571314/77235121-3f29ca00-6bd9-11ea-89b7-651a9580aac2.png)
+
+Dialogs:
+
+![image](https://user-images.githubusercontent.com/31571314/77235143-67b1c400-6bd9-11ea-89be-ef5ea70c1b42.png)
+
