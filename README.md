@@ -40,6 +40,7 @@ Display table:
 
 Dialogs:
 
-![image](https://user-images.githubusercontent.com/31571314/77235172-a0ea3400-6bd9-11ea-8167-4cc1a6976eeb.png)
+![image](https://user-images.githubusercontent.com/31571314/77235183-acd5f600-6bd9-11ea-9d8e-f1048eb205b7.png)
+
 
 
