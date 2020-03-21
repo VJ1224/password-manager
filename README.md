@@ -24,8 +24,16 @@ There are 2 versions:
 
 2. Run gui.py
 
+## Screenshots
+
+Entering master password:
+
+![image](https://user-images.githubusercontent.com/31571314/77235043-a6934a00-6bd8-11ea-8b03-0cfbb41f611f.png)
+
+Main window:
+
+![image](https://user-images.githubusercontent.com/31571314/77235078-dcd0c980-6bd8-11ea-8dfb-4b35e3a43570.png)
 
 ## Note
-
 
 This is meant to be a personal project to learn Python, do not actually use it as it has security issues
