@@ -9,6 +9,19 @@ There are 2 versions:
 
 * gui.py is the graphical version created using TkInter (up to date)
 
+## What I learnt
+
+
+* Working with offline databases in python
+
+* Creating a GUI using the TkInter module
+
+* Formatting and displaying a table
+
+* Using the csv module to work with csv files
+
+* Storing and verifying hashed passwords
+
 
 ## Run
 
