@@ -7,7 +7,7 @@ from tkinter import messagebox
 from tkinter import simpledialog
 from tkinter import font
 
-#Creates a databse and a table if does not exist
+#Creates a database and a table if does not exist
 def createTable():
     try:
         cursor.execute("""CREATE TABLE savedpasswords
