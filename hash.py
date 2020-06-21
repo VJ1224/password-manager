@@ -11,6 +11,4 @@ def storeHash(hash):
     os.environ['PM_PASSWORD'] = hash
 
 def readHash():
-    return os.environ['PM_PASSWORD']
-
-storeHash(hashPassword("vj1224"))
+    return os.environ.get('PM_PASSWORD')

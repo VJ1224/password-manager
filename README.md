@@ -1,6 +1,11 @@
 # Python Password manager
 Password manager with CRUD operations created using Python
 
+## Requirements
+
+* Passlib: pip install passlib
+* Validators: pip install validators
+
 ## Versions
 
 There are 2 versions:
@@ -10,7 +15,6 @@ There are 2 versions:
 * gui.py is the graphical version created using TkInter (up to date)
 
 ## What I learnt
-
 
 * Working with offline databases in python
 
@@ -54,6 +58,3 @@ Display table:
 Dialogs:
 
 ![image](https://user-images.githubusercontent.com/31571314/77235183-acd5f600-6bd9-11ea-9d8e-f1048eb205b7.png)
-
-
-
