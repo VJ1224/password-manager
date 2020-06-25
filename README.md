@@ -1,5 +1,5 @@
-# Python Password manager
-Password manager with CRUD operations created using Python
+# Password Manager
+Password manager created using Python
 
 ## Requirements
 
@@ -29,7 +29,7 @@ There are 2 versions:
 
 ## Run
 
-1. Create a user environment variable _PM_PASSWORD_ that stores hashed master password:
+1. Create a environment variable _PM_PASSWORD_ that stores hashed master password:
 
   * Run hash.py file
 
